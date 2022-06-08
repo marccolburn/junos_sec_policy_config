@@ -1,0 +1,8 @@
+{% for policy in security_policies %}
+set security policies from-zone {{ policy.from_zone }} to-zone {{ policy.to_zone }} policy {{ policy.name }} match source-address {{ policy.src_address }}
+set security policies from-zone {{ policy.from_zone }} to-zone {{ policy.to_zone }} policy {{ policy.name }} match destination-address {{ policy.dest_address }}
+set security policies from-zone {{ policy.from_zone }} to-zone {{ policy.to_zone }} policy {{ policy.name }} match application {{ policy.application }}
+{% for action in policy.thens %}
+set security policies from-zone {{ policy.from_zone }} to-zone {{ policy.to_zone }} policy {{ policy.name }} then {{ action }}
+{% endfor %}
+{% endfor %}

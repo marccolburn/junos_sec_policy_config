@@ -1,0 +1,12 @@
+---
+- name: Configure Junos Security Policies
+  junos_config:
+    lines: "{{ lookup('template', 'junos_sec_policy_config.j2').split('\n') }}"
+    comment: Create security policies
+  when: sec_policy_remove == False
+
+- name: Remove Junos Security Policies
+  junos_config:
+    lines: "{{ lookup('template', 'junos_sec_policy_remove.j2').split('\n') }}"
+    comment: Remove security policies
+  when: sec_policy_remove == True
