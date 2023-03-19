@@ -1,0 +1,3 @@
+{% for policy in security_policies %}
+delete security policies from-zone {{ policy.from_zone }} to-zone {{ policy.to_zone }} policy {{ policy.name }}
+{% endfor %}
